@@ -44,17 +44,18 @@ Template.home.rendered = ->
 Template.home.events
   'click .syllable': (event) ->
     $target   = $(event.target)
+    $column   = $target.closest('.column')
+    $header   = $column.find('.header')
     syllable  = this
     sequences = Session.get('sequences')
     sequence  = syllable.sequence
     list      = sequences[sequence]
 
     if $target.hasClass('selected')
-      $target.removeClass('selected')
+      $target.removeClass('selected done')
       $target.animate(opacity: 1)
       index = list.indexOf(syllable.string)
       list.splice(index, 1)
-
     else
       $target.addClass('selected')
       $target.animate(opacity: 0.5)
@@ -64,12 +65,11 @@ Template.home.events
     Session.set('sequences', sequences)
 
     if list.length >= 5
-      $(".#{sequence}-column").find('.selected').addClass('done')
-      $(".#{sequence}-header").addClass('done')
+      $column.find('.selected').addClass('done')
+      $header.addClass('done')
     else
-      $(".#{sequence}-column").find('.selected').removeClass('done')
-      $(".#{sequence}-header").removeClass('done')
-
+      $column.find('.selected').removeClass('done')
+      $header.removeClass('done')
 
     if _.every(_.map sequences, (seq) -> seq.length >= 5)
       $('.generate').removeClass('red remove')
