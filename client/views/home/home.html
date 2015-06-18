@@ -1,18 +1,12 @@
 <template name="home">
 
   <div class="ui container">
-    <h1 class="ui header">Syllabear</h1>
-  </div>
-
-  <div class="ui divider"></div>
-
-  <div class="ui container">
     <div class="ui three column grid">
 
       {{#each sequences}}
-        <div class="center aligned column">
+        <div class="center aligned column {{sequence}}-column">
 
-          <h2 class="ui header">{{sequence}}</h2>
+          <h2 class="ui header {{sequence}}-header">{{sequence}}</h2>
           <div class="ui divider"></div>
 
           {{#each syllables}}
@@ -27,5 +21,10 @@
       {{/each}}
 
     </div>
+  </div>
+
+  <div class="ui container center aligned">
+    <i class="massive blue random link icon"></i>
+    <i class="massive generate red remove icon"></i>
   </div>
 </template>

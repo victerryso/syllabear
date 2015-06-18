@@ -1,29 +1,86 @@
 root = exports ? this
 
-Session.keys =
-  a: {}
-  b: {}
-  c: {}
+generateWords = ->
+  sequences = Session.get('sequences')
+  abc = []; bac = []
+
+  _(10).times ->
+    word = ''
+    word = word + _.sample sequences.a
+    word = word + _.sample sequences.b
+    word = word + _.sample sequences.c
+    abc.push word
+
+  _(10).times ->
+    word = ''
+    word = word + _.sample sequences.b
+    word = word + _.sample sequences.a
+    word = word + _.sample sequences.c
+    bac.push word
+
+  Session.set('list', abc: abc, bac: bac)
+
+randomWords = ->
+  sequences = Session.get('sequences')
+  _.each sequences, (list, sequence) ->
+    count = list.length
+    until count >= 5
+      syllable = _.sample $(".#{sequence}-column").find('.syllable')
+      unless $(syllable).hasClass('selected')
+        $(syllable).trigger('click')
+        count += 1
 
 Template.home.helpers
   sequences: ->
     grouped = _.groupBy Syllables.find().fetch(), 'sequence'
     _.map grouped, (syllables, sequence) ->
-      sequence : sequence.toUpperCase()
+      sequence : sequence
       syllables: syllables
 
 Template.home.rendered = ->
+  Session.keys = {}
+  Session.set('sequences', a: [], b: [], c: [])
 
 Template.home.events
   'click .syllable': (event) ->
-    $target = $(event.target)
-    sequence = Session.get(this.sequence)
+    $target   = $(event.target)
+    syllable  = this
+    sequences = Session.get('sequences')
+    sequence  = syllable.sequence
+    list      = sequences[sequence]
 
     if $target.hasClass('selected')
       $target.removeClass('selected')
       $target.animate(opacity: 1)
-      _.filter sequence, (syllable) -> this is syllable
+      index = list.indexOf(syllable.string)
+      list.splice(index, 1)
+
     else
       $target.addClass('selected')
       $target.animate(opacity: 0.5)
+      list.push(this.string)
 
+    sequences[sequence] = list
+    Session.set('sequences', sequences)
+
+    if list.length >= 5
+      $(".#{sequence}-column").find('.selected').addClass('done')
+      $(".#{sequence}-header").addClass('done')
+    else
+      $(".#{sequence}-column").find('.selected').removeClass('done')
+      $(".#{sequence}-header").removeClass('done')
+
+
+    if _.every(_.map sequences, (seq) -> seq.length >= 5)
+      $('.generate').removeClass('red remove')
+      $('.generate').addClass('green checkmark link')
+    else
+      $('.generate').removeClass('green checkmark link')
+      $('.generate').addClass('red remove')
+
+  'click .green.generate': (event) ->
+    generateWords()
+    Router.go('results')
+
+  'click .blue.random': (event) ->
+    randomWords()

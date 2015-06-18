@@ -1,0 +1,44 @@
+<template name='results'>
+<!--   <div class="ui container">
+    <div class="ui three column grid">
+
+      {{#each sequences}}
+        <div class="center aligned column column-{{sequence}}">
+
+            <div class="ui statistic">
+              <div class="text value">
+                {{sequence}}:{{#each syllables}}{{this}},{{/each}}
+              </div>
+            </div>
+
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+ -->
+  <div class="ui container">
+    <div class="ui two column grid">
+
+      {{#each lists}}
+        <div class="center aligned column">
+
+          <h2 class="ui header">{{combo}}</h2>
+          <div class="ui divider"></div>
+
+          {{#each list}}
+            <p>
+              <div class="ui statistic">
+                <div class="text value">
+                  {{this}}
+                </div>
+              </div>
+            </p>
+          {{/each}}
+
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+</template>

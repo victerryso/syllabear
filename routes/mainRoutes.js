@@ -6,3 +6,12 @@ Router.route('home', {
     ];
   }
 })
+
+Router.route('results', {
+  path: '/results',
+  waitOn: function() {
+    return [
+      Meteor.subscribe('Syllables')
+    ];
+  }
+})
