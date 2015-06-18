@@ -72,15 +72,16 @@ Template.home.events
       $header.removeClass('done')
 
     if _.every(_.map sequences, (seq) -> seq.length >= 5)
-      $('.generate').removeClass('red remove')
-      $('.generate').addClass('green checkmark link')
+      $('.checkmark').removeClass('disabled')
     else
-      $('.generate').removeClass('green checkmark link')
-      $('.generate').addClass('red remove')
+      $('.checkmark').addClass('disabled')
 
-  'click .green.generate': (event) ->
+  'click .green.checkmark': (event) ->
     generateWords()
     Router.go('results')
 
   'click .blue.random': (event) ->
     randomWords()
+
+  'click .red.remove': (event) ->
+    $('.selected').trigger('click')
