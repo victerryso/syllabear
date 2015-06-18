@@ -72,9 +72,11 @@ Template.home.events
       $header.removeClass('done')
 
     if _.every(_.map sequences, (seq) -> seq.length >= 5)
+      $('.checkmark').addClass('bounce animated')
       $('.checkmark').removeClass('disabled')
     else
       $('.checkmark').addClass('disabled')
+      $('.checkmark').removeClass('bounce animated')
 
   'click .green.checkmark': (event) ->
     generateWords()
