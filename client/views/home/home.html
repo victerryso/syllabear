@@ -1,0 +1,31 @@
+<template name="home">
+
+  <div class="ui container">
+    <h1 class="ui header">Syllabear</h1>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui container">
+    <div class="ui three column grid">
+
+      {{#each sequences}}
+        <div class="center aligned column">
+
+          <h2 class="ui header">{{sequence}}</h2>
+          <div class="ui divider"></div>
+
+          {{#each syllables}}
+            <div class="ui statistic">
+              <div class="text value syllable">
+                {{string}}
+              </div>
+            </div>
+          {{/each}}
+
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+</template>
