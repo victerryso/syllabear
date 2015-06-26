@@ -9,8 +9,14 @@
           <h2 class="ui header">{{sequence}}</h2>
           <div class="ui divider"></div>
 
+          <div class="ui input">
+            <input class='syllable-input' placeholder='Add/Remove...'>
+          </div>
+
+          <br>
+
           {{#each syllables}}
-            <div class="ui statistic">
+            <div class="ui small statistic">
               <div class="text value syllable">
                 {{string}}
               </div>

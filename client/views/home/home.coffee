@@ -4,19 +4,29 @@ generateWords = ->
   sequences = Session.get('sequences')
   abc = []; bac = []
 
-  _(10).times ->
-    word = ''
-    word = word + _.sample sequences.a
-    word = word + _.sample sequences.b
-    word = word + _.sample sequences.c
-    abc.push word
+  until abc.length >= 10
+    sample =
+      a: _.sample sequences.a
+      b: _.sample sequences.b
+      c: _.sample sequences.c
+    values = _.values(sample)
+    starts = _.map values, (value) -> _.first(value)
+    unless _.uniq(starts).length < 3
+      word = values.join('')
+      abc.push(word)
+      _.uniq(abc)
 
-  _(10).times ->
-    word = ''
-    word = word + _.sample sequences.b
-    word = word + _.sample sequences.a
-    word = word + _.sample sequences.c
-    bac.push word
+  until bac.length >= 10
+    sample =
+      b: _.sample sequences.b
+      a: _.sample sequences.a
+      c: _.sample sequences.c
+    values = _.values(sample)
+    starts = _.map values, (value) -> _.first(value)
+    unless _.uniq(starts).length < 3
+      word = values.join('')
+      bac.push(word)
+      _.uniq(bac)
 
   Session.set('list', abc: abc, bac: bac)
 
@@ -66,10 +76,10 @@ Template.home.events
 
     if list.length >= 5
       $column.find('.selected').addClass('done')
-      $header.addClass('done')
+      $header.addClass('green')
     else
       $column.find('.selected').removeClass('done')
-      $header.removeClass('done')
+      $header.removeClass('green')
 
     if _.every(_.map sequences, (seq) -> seq.length >= 5)
       $('.checkmark').addClass('bounce animated')
@@ -87,3 +97,17 @@ Template.home.events
 
   'click .red.remove': (event) ->
     $('.selected').trigger('click')
+
+  'keydown .syllable-input': (event) ->
+    if event.which is 13
+      $target = $(event.target)
+      string = $target.val().toLowerCase()
+      $target.val('')
+
+      syllable =
+        sequence: @sequence
+        strength: if @sequence is 'a' then 'strong' else 'weak'
+        string: string
+
+      existing = Syllables.findOne(syllable)
+      if existing then Syllables.remove(existing._id) else Syllables.insert(syllable)
