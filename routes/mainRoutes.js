@@ -15,3 +15,12 @@ Router.route('results', {
     ];
   }
 })
+
+Router.route('edit', {
+  path: '/edit',
+  waitOn: function() {
+    return [
+      Meteor.subscribe('Syllables')
+    ];
+  }
+})

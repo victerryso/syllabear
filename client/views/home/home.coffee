@@ -45,7 +45,7 @@ Template.home.helpers
     grouped = _.groupBy Syllables.find().fetch(), 'sequence'
     _.map grouped, (syllables, sequence) ->
       sequence : sequence
-      syllables: syllables
+      syllables: _.sortBy syllables, 'string'
 
 Template.home.rendered = ->
   Session.keys = {}
@@ -98,16 +98,5 @@ Template.home.events
   'click .red.remove': (event) ->
     $('.selected').trigger('click')
 
-  'keydown .syllable-input': (event) ->
-    if event.which is 13
-      $target = $(event.target)
-      string = $target.val().toLowerCase()
-      $target.val('')
-
-      syllable =
-        sequence: @sequence
-        strength: if @sequence is 'a' then 'strong' else 'weak'
-        string: string
-
-      existing = Syllables.findOne(syllable)
-      if existing then Syllables.remove(existing._id) else Syllables.insert(syllable)
+  'click .yellow.edit': ->
+    Router.go('edit')

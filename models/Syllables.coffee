@@ -15,6 +15,10 @@ root.Syllables.attachSchema(
     string:
       type: String
 
+    editing:
+      type: Boolean
+      optional: true
+
   )
 )
 

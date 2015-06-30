@@ -1,0 +1,49 @@
+<template name='edit'>
+  <div class="ui container">
+    <div class="ui grid three columns">
+      {{#each sequences}}
+        <div class="center aligned column {{sequence}}-column">
+
+          <h2 class="ui header">{{sequence}}</h2>
+
+          <div class="ui input">
+            <input placeholder='Add...'>
+          </div>
+
+          <div class="ui divider"></div>
+
+          <div class="ui grid two columns">
+            {{#each syllables}}
+              <div class="center aligned column edit-column">
+                {{#if editing}}
+
+                  <div class="ui input">
+                    <input type="text" id='{{_id}}' value='{{string}}'>
+                  </div>
+
+                {{else}}
+
+                  <div class="ui small statistic">
+                    <div class="text value syllable">
+                      {{string}}
+                      <br>
+                      <i class="blue edit link icon"></i>
+                      <i class="red remove link icon"></i>
+                    </div>
+                  </div>
+
+                {{/if}}
+              </div>
+            {{/each}}
+          </div>
+
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="ui container center aligned">
+    <i class="massive blue left arrow link icon"></i>
+  </div>
+
+</template>
