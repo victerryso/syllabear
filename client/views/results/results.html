@@ -27,6 +27,24 @@
 
   <div class="ui container center aligned">
     <i class="massive blue left arrow link icon"></i>
+    <i class="massive yellow folder open link icon"></i>
+    <i class="massive green save link icon"></i>
   </div>
 
+  <div class="ui basic modal">
+    {{> modal}}
+  </div>
+
+</template>
+
+<template name='modal'>
+  <i class="close icon"></i>
+  <div class="header">
+    Open List
+  </div>
+  <div class="content">
+    {{#each savedLists}}
+      <h3 class="ui yellow header" style='cursor: pointer'>{{_id}}</h3>
+    {{/each}}
+  </div>
 </template>

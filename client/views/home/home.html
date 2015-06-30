@@ -9,13 +9,17 @@
           <h2 class="ui header">{{sequence}}</h2>
           <div class="ui divider"></div>
 
-          {{#each syllables}}
-            <div class="ui small statistic">
-              <div class="text value syllable">
-                {{string}}
+          <div class="ui grid two columns">
+            {{#each syllables}}
+              <div class="center aligned column edit-column">
+                <div class="ui small statistic">
+                  <div class="text value syllable">
+                    {{string}}
+                  </div>
+                </div>
               </div>
-            </div>
-          {{/each}}
+            {{/each}}
+          </div>
 
         </div>
       {{/each}}
