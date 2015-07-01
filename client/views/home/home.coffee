@@ -35,7 +35,7 @@ randomWords = ->
   _.each sequences, (list, sequence) ->
     count = list.length
     until count >= 5
-      syllable = _.sample $(".#{sequence}-column").find('.syllable')
+      syllable = _.sample $(".#{sequence}-column").find('.statistic')
       unless $(syllable).hasClass('selected')
         $(syllable).trigger('click')
         count += 1
@@ -52,9 +52,9 @@ Template.home.rendered = ->
   Session.set('sequences', a: [], b: [], c: [])
 
 Template.home.events
-  'click .syllable': (event) ->
-    $target   = $(event.target)
-    $column   = $target.closest('.column')
+  'click .statistic': (event) ->
+    $target   = $(event.target).closest('.statistic')
+    $column   = $target.closest(".#{@sequence}-column")
     $header   = $column.find('.header')
     syllable  = this
     sequences = Session.get('sequences')
@@ -62,7 +62,7 @@ Template.home.events
     list      = sequences[sequence]
 
     if $target.hasClass('selected')
-      $target.removeClass('selected done')
+      $target.removeClass('selected green')
       $target.animate(opacity: 1)
       index = list.indexOf(syllable.string)
       list.splice(index, 1)
@@ -75,10 +75,10 @@ Template.home.events
     Session.set('sequences', sequences)
 
     if list.length >= 5
-      $column.find('.selected').addClass('done')
+      $column.find('.selected').addClass('green')
       $header.addClass('green')
     else
-      $column.find('.selected').removeClass('done')
+      $column.find('.selected').removeClass('green')
       $header.removeClass('green')
 
     if _.every(_.map sequences, (seq) -> seq.length >= 5)

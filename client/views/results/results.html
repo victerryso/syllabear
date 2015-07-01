@@ -6,12 +6,12 @@
       {{#each lists}}
         <div class="center aligned column">
 
-          <h2 class="ui header">{{combo}}</h2>
+          <h2 class="ui inverted header">{{combo}}</h2>
           <div class="ui divider"></div>
 
           {{#each list}}
             <p>
-              <div class="ui statistic">
+              <div class="ui inverted statistic">
                 <div class="text value">
                   {{this}}
                 </div>
@@ -26,8 +26,9 @@
   </div>
 
   <div class="ui container center aligned">
-    <i class="massive blue left arrow link icon"></i>
+    <i class="massive red left arrow link icon"></i>
     <i class="massive yellow folder open link icon"></i>
+    <i class="massive blue shuffle link icon"></i>
     <i class="massive green save link icon"></i>
   </div>
 
@@ -43,8 +44,13 @@
     Open List
   </div>
   <div class="content">
+    <div class="ui inverted icon input">
+      <input class='save-list' placeholder='Save As...'>
+      <i class="save icon"></i>
+    </div>
+
     {{#each savedLists}}
-      <h3 class="ui yellow header" style='cursor: pointer'>{{_id}}</h3>
+      <h3 class="ui yellow header" style='cursor: pointer'>{{name}}</h3>
     {{/each}}
   </div>
 </template>

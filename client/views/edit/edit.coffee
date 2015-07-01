@@ -33,4 +33,4 @@ Template.edit.events
 
   'click .red.remove': (event) -> Syllables.remove(@_id)
 
-  'click .left.blue': -> Router.go('home')
+  'click .red.left': -> Router.go('home')

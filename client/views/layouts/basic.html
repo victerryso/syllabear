@@ -1,13 +1,15 @@
 <template name="basicLayout">
     <div id="main">
-        <header>
-            {{> header}}
-        </header>
+        <div class="ui inverted segment">
+            <header>
+                {{> header}}
+            </header>
 
-            {{> yield}}
-            {{! Also a sidebar! }}
-        <footer>
-            {{> footer}}
-        </footer>
+                {{> yield}}
+                {{! Also a sidebar! }}
+            <footer>
+                {{> footer}}
+            </footer>
+        </div>
     </div>
 </template>

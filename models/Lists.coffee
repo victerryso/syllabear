@@ -6,13 +6,14 @@ Meteor.subscribe('Lists')
 root.Lists.attachSchema(
   new SimpleSchema(
 
+    name:
+      type: String
+
     sequences:
       type: Object
-      blackbox: true
 
     list:
       type: Object
-      blackbox: true
   )
 )
 
