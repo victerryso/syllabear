@@ -34,6 +34,7 @@ generateWords = ->
 Template.results.helpers
   lists: -> _.map Session.get('list'), (list, combo) -> combo: combo, list : list
   disableTable: -> unless Session.get('sequences') then 'disabled'
+
 Template.results.events
   'click .red.left': -> Router.go('home')
 

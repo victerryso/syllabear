@@ -16,14 +16,16 @@ Template.modal.events
     Session.set('name', @name)
 
   'keydown .save-list': (event) ->
-    return unless event.which is 13
     name = $(event.target).val()
-    return unless name
+    return unless event.which is 13 and name
+
     $(event.target).val('')
+    Session.set('name', name)
 
     Lists.insert
       name: name
       sequences: Session.get('sequences')
       list: Session.get('list')
 
-  'click .red.remove': -> Lists.remove(@_id); false
+  'click .red.remove': ->
+    Lists.remove(@_id); false
