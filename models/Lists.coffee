@@ -11,9 +11,11 @@ root.Lists.attachSchema(
 
     sequences:
       type: Object
+      blackbox: true
 
     list:
       type: Object
+      blackbox: true
   )
 )
 

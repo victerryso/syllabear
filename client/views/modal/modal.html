@@ -1,0 +1,60 @@
+<template name='modal'>
+
+  <div class="content">
+    <div class="ui grid two columns">
+
+      <div class="column">
+
+  <h2 class="ui inverted header">
+    Open List
+  </h2>
+
+        <div class="ui inverted icon input">
+          <input class='save-list' placeholder='Save As...'>
+          <i class="save icon"></i>
+        </div>
+
+        {{#each savedLists}}
+          <h3 class="ui yellow header" style='cursor: pointer'>
+            <i class="red remove icon"></i>
+            <div class="content load-list">{{name}}</div>
+          </h3>
+        {{/each}}
+
+      </div>
+
+      <div class="center aligned column">
+
+        <h2 class="ui inverted header">{{sequenceName}}</h2>
+
+        <div class="ui grid three columns">
+
+          {{#each sequences}}
+            <div class="center aligned column {{sequence}}-column">
+
+              <h2 class="ui inverted header">{{sequence}}</h2>
+              <div class="ui divider"></div>
+
+                {{#each syllables}}
+
+                  <div class="center aligned column adjust-column">
+                    <div class="ui small inverted yellow statistic">
+                      <div class="text value">
+                        {{this}}
+                      </div>
+                    </div>
+                  </div>
+
+                {{/each}}
+
+            </div>
+          {{/each}}
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</template>

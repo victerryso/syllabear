@@ -33,34 +33,14 @@ generateWords = ->
 
 Template.results.helpers
   lists: -> _.map Session.get('list'), (list, combo) -> combo: combo, list : list
-
+  disableTable: -> unless Session.get('sequences') then 'disabled'
 Template.results.events
   'click .red.left': -> Router.go('home')
 
-  'click .yellow.folder': (event) ->
+  'click .green.folder': (event) ->
     $('.ui.basic.modal').modal('show')
 
   'click .blue.shuffle': (event) ->
     generateWords()
-
-
-Template.modal.helpers
-  savedLists: -> Lists.find()
-
-Template.modal.events
-  'click h3.header': (event) ->
-    Session.set('sequences', @sequences)
-    Session.set('list', @list)
-
-    $('ui.modal').modal('hide')
-
-  'keydown .save-list': (event) ->
-    return unless event.which is 13
-    name = $(event.target).val()
-    $(event.target).val('')
-
-    Lists.insert
-      name: name
-      sequences: Session.get('sequences')
-      list: Session.get('list')
+    Session.set('name', '')
 

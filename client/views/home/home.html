@@ -1,24 +1,26 @@
 <template name="home">
 
-<div class="ui inverted segment">
   <div class="ui container">
-    <div class="ui three column grid">
+    <div class="ui grid three columns">
 
       {{#each sequences}}
         <div class="center aligned column {{sequence}}-column">
 
           <h2 class="ui inverted header">{{sequence}}</h2>
+
           <div class="ui divider"></div>
 
           <div class="ui grid two columns">
             {{#each syllables}}
-              <div class="center aligned column edit-column">
+
+              <div class="center aligned column adjust-column">
                 <div class="ui small inverted statistic">
                   <div class="text value syllable">
                     {{string}}
                   </div>
                 </div>
               </div>
+
             {{/each}}
           </div>
 
@@ -27,7 +29,6 @@
 
     </div>
   </div>
-</div>
 
   <div class="ui container center aligned">
     <i class="massive yellow edit link icon"></i>
@@ -35,4 +36,5 @@
     <i class="massive blue random link icon"></i>
     <i class="massive green disabled checkmark link icon"></i>
   </div>
+
 </template>
