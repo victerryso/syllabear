@@ -14,7 +14,7 @@ generateWords = ->
     unless _.uniq(starts).length < 3
       word = values.join('')
       abc.push(word)
-      _.uniq(abc)
+      abc = _.uniq(abc)
 
   until bac.length >= 10
     sample =
@@ -26,7 +26,7 @@ generateWords = ->
     unless _.uniq(starts).length < 3
       word = values.join('')
       bac.push(word)
-      _.uniq(bac)
+      bac = _.uniq(bac)
 
   Session.set('list', abc: abc, bac: bac)
 
