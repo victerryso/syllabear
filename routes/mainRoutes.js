@@ -1,3 +1,7 @@
+Router.configure({
+  loadingTemplate: 'loading'
+});
+
 Router.route('home', {
   path: '/',
   waitOn: function() {
