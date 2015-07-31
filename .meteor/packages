@@ -24,3 +24,4 @@ meteorhacks:fast-render
 
 semantic:ui-css
 coffeescript
+pcel:loading

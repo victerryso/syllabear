@@ -1,40 +1,44 @@
 <template name="home">
 
-  <div class="ui container">
-    <div class="ui grid three columns">
+    <div class="ui container">
+      <div class="ui very relaxed grid">
+        <div class="three column row">
 
-      {{#each sequences}}
-        <div class="center aligned column {{sequence}}-column">
+          {{#each sequences}}
+            <div class="center aligned column {{sequence}}-column">
 
-          <h2 class="ui inverted header">{{sequence}}</h2>
+              <h2 class="ui inverted header">{{sequence}}</h2>
 
-          <div class="ui divider"></div>
+              <div class="ui divider"></div>
 
-          <div class="ui grid two columns">
-            {{#each syllables}}
+              <div class="ui grid three column">
+                {{#each syllables}}
 
-              <div class="center aligned column adjust-column">
-                <div class="ui small inverted statistic">
-                  <div class="text value syllable">
-                    {{string}}
+                  <div class="center aligned column adjust-column">
+                    <div class="ui small inverted statistic">
+                      <div class="text value syllable">
+                        {{string}}
+                      </div>
+                    </div>
                   </div>
-                </div>
+
+                {{/each}}
               </div>
 
-            {{/each}}
-          </div>
+            </div>
+          {{/each}}
 
         </div>
-      {{/each}}
-
+      </div>
     </div>
-  </div>
 
-  <div class="ui container center aligned">
-    <i class="massive yellow edit link icon"></i>
-    <i class="massive red remove link icon"></i>
-    <i class="massive blue random link icon"></i>
-    <i class="massive green disabled checkmark link icon"></i>
-  </div>
+    <br>
+
+    <div class="ui container center aligned">
+      <i class="massive yellow edit link icon" style="zoom: 0.75"></i>
+      <i class="massive red remove link icon" style="zoom: 0.75"></i>
+      <i class="massive blue random link icon" style="zoom: 0.75"></i>
+      <i class="massive green disabled checkmark link icon" style="zoom: 0.75"></i>
+    </div>
 
 </template>

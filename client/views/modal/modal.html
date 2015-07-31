@@ -5,12 +5,16 @@
 
       <div class="column">
 
-        <h2 class="ui inverted header">Open</h2>
+        <h2 class="ui inverted header">Save</h2>
 
         <div class="ui inverted icon input">
           <input class='save-list' placeholder='Save As...'>
           <i class="save icon"></i>
         </div>
+
+        {{#if savedLists.count}}
+          <h2 class="ui inverted header">Open</h2>
+        {{/if}}
 
         {{#each savedLists}}
           <h3 class="ui yellow header" style='cursor: pointer'>

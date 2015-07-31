@@ -1,35 +1,5 @@
 root = exports ? this
 
-generateWords = ->
-  sequences = Session.get('sequences')
-  abc = []; bac = []
-
-  until abc.length >= 10
-    sample =
-      a: _.sample sequences.a
-      b: _.sample sequences.b
-      c: _.sample sequences.c
-    values = _.values(sample)
-    starts = _.map values, (value) -> _.first(value)
-    unless _.uniq(starts).length < 3
-      word = values.join('')
-      abc.push(word)
-      abc = _.uniq(abc)
-
-  until bac.length >= 10
-    sample =
-      b: _.sample sequences.b
-      a: _.sample sequences.a
-      c: _.sample sequences.c
-    values = _.values(sample)
-    starts = _.map values, (value) -> _.first(value)
-    unless _.uniq(starts).length < 3
-      word = values.join('')
-      bac.push(word)
-      bac = _.uniq(bac)
-
-  Session.set('list', abc: abc, bac: bac)
-
 randomWords = ->
   sequences = Session.get('sequences')
   _.each sequences, (list, sequence) ->
@@ -63,12 +33,10 @@ Template.home.events
 
     if $target.hasClass('selected')
       $target.removeClass('selected green')
-      $target.animate(opacity: 1)
       index = list.indexOf(syllable.string)
       list.splice(index, 1)
     else
       $target.addClass('selected')
-      $target.animate(opacity: 0.5)
       list.push(this.string)
 
     sequences[sequence] = list
@@ -89,8 +57,7 @@ Template.home.events
       $('.checkmark').removeClass('bounce animated')
 
   'click .green.checkmark': (event) ->
-    generateWords()
-    Router.go('results')
+    $('.syllable').transition('fade', onComplete: -> Router.go('results'))
 
   'click .blue.random': (event) ->
     randomWords()
@@ -99,4 +66,4 @@ Template.home.events
     $('.selected').trigger('click')
 
   'click .yellow.edit': ->
-    Router.go('edit')
+    $('.syllable').transition('fade', onComplete: -> Router.go('edit'))
