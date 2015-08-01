@@ -16,7 +16,7 @@
 
           <div class="ui grid two columns">
             {{#each syllables}}
-              <div class="center aligned column adjust-column">
+              <div class="center aligned column">
 
                 {{#if editing}}
 
@@ -26,14 +26,9 @@
 
                 {{else}}
 
-                  <div class="ui small inverted statistic">
-                    <div class="text value syllable">
-                      {{string}}
-                      <br>
-                      <i class="blue edit link icon"></i>
-                      <i class="red remove link icon"></i>
-                    </div>
-                  </div>
+                  <span>{{string}}</span>
+                  <i class="large blue edit link icon"></i>
+                  <i class="large red remove link icon"></i>
 
                 {{/if}}
 

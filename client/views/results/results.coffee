@@ -28,7 +28,7 @@ generateWords = ->
       bac.push(word)
       bac = _.uniq(bac)
 
-  Session.set('list', abc: abc, bac: bac)
+  Session.set('list', Sww: abc, wSw: bac)
 
 
 Template.results.helpers

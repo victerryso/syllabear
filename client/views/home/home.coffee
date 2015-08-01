@@ -5,7 +5,7 @@ randomWords = ->
   _.each sequences, (list, sequence) ->
     count = list.length
     until count >= 5
-      syllable = _.sample $(".#{sequence}-column").find('.statistic')
+      syllable = _.sample $(".#{sequence}-column").find('.syllable')
       unless $(syllable).hasClass('selected')
         $(syllable).trigger('click')
         count += 1
@@ -22,8 +22,8 @@ Template.home.rendered = ->
   Session.set('sequences', a: [], b: [], c: [])
 
 Template.home.events
-  'click .statistic': (event) ->
-    $target   = $(event.target).closest('.statistic')
+  'click .syllable': (event) ->
+    $target   = $(event.target)
     $column   = $target.closest(".#{@sequence}-column")
     $header   = $column.find('.header')
     syllable  = this

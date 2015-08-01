@@ -37,17 +37,11 @@
               <h2 class="ui inverted header">{{sequence}}</h2>
               <div class="ui divider"></div>
 
+              <div class="center aligned column">
                 {{#each syllables}}
-
-                  <div class="center aligned column adjust-column">
-                    <div class="ui small inverted yellow statistic">
-                      <div class="text value">
-                        {{this}}
-                      </div>
-                    </div>
-                  </div>
-
+                  <p class="yellow word">{{this}}</p>
                 {{/each}}
+              </div>
 
             </div>
           {{/each}}
