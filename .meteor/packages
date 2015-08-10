@@ -22,6 +22,6 @@ natestrauser:animate-css
 dburles:collection-helpers
 meteorhacks:fast-render
 
-semantic:ui-css
 coffeescript
 pcel:loading
+semantic:ui-css@1.12.3
